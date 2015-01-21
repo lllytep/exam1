@@ -1,17 +1,33 @@
 package ru.ifmo.md.exam1;
 
+import android.app.ListActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ListActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        ArrayAdapter<ObjectItem> adapter = new ArrayListAdapter(this,
+                getObjects());
+        //setContentView(R.layout.activity_main);
+        setListAdapter(adapter);
+    }
+
+    public List<ObjectItem> getObjects(){
+        List<ObjectItem> list = new ArrayList<>();
+        list.add(new ObjectItem("title name", "content name", "tag"));
+        list.add(new ObjectItem("title name2", "content name2", "tag2"));
+        return list;
     }
 
 
